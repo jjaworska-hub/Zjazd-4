@@ -1,0 +1,42 @@
+#include <iostream>
+#include <unordered_map>
+
+int main() {
+    int n;
+
+    std::cout << "Podaj liczbe elementow tablicy: ";
+    std::cin >> n;
+
+    if (n <= 0) {
+        std::cout << "Liczba elementow musi byc dodatnia." << std::endl;
+    }
+
+    int tab[n]; 
+    std::cout << "Podaj " << n << " liczb calkowitych:" << std::endl;
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> tab[i];
+    }
+
+    std::unordered_map<int, int> licznik;
+
+    for (int i = 0; i < n; i++) {
+        licznik[tab[i]]++; 
+    }
+
+    int najczestszy_element = tab[0];
+    int maks_liczba_wystapien = licznik[tab[0]];
+
+    for (const auto& para : licznik) {
+        if (para.second > maks_liczba_wystapien) {
+            najczestszy_element = para.first;
+            maks_liczba_wystapien = para.second;
+        }
+    }
+
+    std::cout << "Najczesciej wystepujacy element to: " 
+         << najczestszy_element 
+         << " (wystapienia: " << maks_liczba_wystapien << ")" << std::endl;
+
+    return 0;
+}
